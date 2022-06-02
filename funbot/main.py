@@ -4,18 +4,23 @@ import os
 
 from discord.ext import commands
 
-bot = commands.Bot(command_prefix="$", help_command=None)
+_EXTENSIONS = [
+]
+
+bot = commands.Bot(command_prefix="$")
 
 @bot.command(description="Reload bot", hidden=True)
 async def reload(ctx):
-    try:
-        bot.reload_extension("cmds")
-        # green checkmark
-        await ctx.message.add_reaction("\u2705")
-    except commands.errors.ExtensionNotLoaded:
-        # red X
-        await ctx.message.add_reaction("\u274C")
-        raise
+    for ext in _EXTENSIONS:
+        try:
+            bot.reload_extension(ext)
+            # green checkmark
+        except commands.errors.ExtensionNotLoaded:
+            # red X
+            await ctx.message.add_reaction("\u274C")
+            raise
+
+    await ctx.message.reply(f"\u2705 Reloaded {len(_EXTENSIONS)} extensions!")
 
 def main():
     token = os.environ.get("DISCORD_BOT_TOKEN")
