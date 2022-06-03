@@ -2,15 +2,28 @@
 
 import os
 
+import discord
 from discord.ext import commands
 
 _EXTENSIONS = [
+    "funbot.cogs.action"
 ]
 
 _CHECKMK = "\u2705"
 _FAILMK = "\u274C"
 
 bot = commands.Bot(command_prefix="$")
+for ext in _EXTENSIONS:
+    bot.load_extension(ext)
+
+@bot.event
+async def on_ready():
+    print("Connected to Discord")
+    await bot.change_presence(
+        activity=discord.Game(
+            name="$help",
+        )
+    )
 
 @bot.command(description="Reload bot", hidden=True)
 async def reload(ctx):
