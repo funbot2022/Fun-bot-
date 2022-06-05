@@ -7,7 +7,8 @@ from discord.ext import commands
 
 _EXTENSIONS = [
     "funbot.cogs.action",
-    "funbot.cogs.casual"
+    "funbot.cogs.casual",
+    "funbot.cogs.economy"
 ]
 
 _CHECKMK = "\u2705"
