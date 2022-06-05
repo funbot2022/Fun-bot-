@@ -6,7 +6,8 @@ import discord
 from discord.ext import commands
 
 _EXTENSIONS = [
-    "funbot.cogs.action"
+    "funbot.cogs.action",
+    "funbot.cogs.casual"
 ]
 
 _CHECKMK = "\u2705"

@@ -36,10 +36,6 @@ _ACTIONS = {
 
 class Action(commands.Cog):
 
-    @commands.command(description="say hello")
-    async def hello(self, ctx):
-        await ctx.send(f"Hello {ctx.author.mention}!")
-
     async def _send_action_embed(self, ctx, action):
         names = _ACTIONS[action]["names"]
         gifs = _ACTIONS[action]["gifs"]
